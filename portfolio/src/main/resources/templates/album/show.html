@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+  </head>
+<body>
+  <div class="container">
+    <h1>情報詳細</h1>
+    <div th:object="${albumData}">
+      <div>・アーティスト
+        <p th:text="*{artist}"></p>
+      </div>
+      <div>・アルバム名
+        <p th:text="*{title}"></p>
+      </div>
+      <div>・得点
+        <p th:text="*{score}">　</p>
+      </div>
+        <div>・感想
+        <p th:text="*{body}"></p>
+      </div>
+    </div>
+    <br />
+      <a href="/album/index" class="btn btn-secondary">一覧に戻る</a>
+      <a href="/comment/new" class="btn btn-secondary">コメントを書く</a>
+  </div>
+
+    <h1>コメント一覧</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="comment : ${comment}" th:object="${comment}">
+          <td th:text="*{comment}"></td>
+        </tr>
+      </tbody>
+    </table>
+</body>

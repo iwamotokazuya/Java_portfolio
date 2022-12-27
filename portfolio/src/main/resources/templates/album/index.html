@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ユーザー情報一覧</title>
+<link href="/css/list.css" rel="stylesheet"></link>
+<meta charset="utf-8" />
+</head>
+<body>
+    <h1>レビュー一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>アーティスト名</th>
+                <th>アルバムタイトル</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="album : ${album}" th:object="${album}">
+                <td th:text="*{artist}"></td>
+                <td th:text="*{title}"></td>
+                <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}(id=*{id})}">参照</a></td>
+                <td><a class="btn btn-default btn-xs" th:href="@{/album/edit/{id}(id=*{id})}">編集</a></td>
+                <td><a th:href="@{/album/delete/{id}(id=*{id})}" class="btn btn-secondary">削除</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/album/new" class="to-user-registration">投稿する</a>
+</body>
+</html>

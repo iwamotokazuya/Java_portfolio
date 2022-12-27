@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Person</title>
+  <style>
+    .red{
+      color: red;
+    }
+    .invalid{
+      border:2px solid red;
+    }
+  </style>
+</head>
+<body>
+  <h2>新規作成</h2>
+  <form th:action="@{/album/create}" th:object="${albumRequest}" th:method="post">
+    <label>アーティスト</label>
+    <input type="text" th:field="*{artist}" th:errorclass="invalid"><br>
+    <div class="red" th:errors="*{artist}"></div>
+    <label>アルバムタイトル</label>
+    <input type="text" th:field="*{title}" th:errorclass="invalid"><br>
+    <div class="red" th:errors="*{title}"></div>
+    <label>点数</label>
+    <input type="number" th:field="*{score}" th:errorclass="invalid"><br>
+    <div class="red" th:errors="*{score}"></div>
+    <label>レビュー</label>
+    <textarea th:field="*{body}" th:errorclass="invalid"></textarea><br>
+    <div class="red" th:errors="*{body}"></div>
+    <button>作成</button>
+  </form>
+  <a class="btn btn-link" href="/album/index">一覧画面へ</a>
+</body>

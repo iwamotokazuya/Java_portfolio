@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ユーザー情報一覧</title>
+<link href="/css/list.css" rel="stylesheet"></link>
+<meta charset="utf-8" />
+</head>
+<body>
+    <h1>ユーザー情報一覧</h1>
+    <div th:if="${album}">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>アーティスト名</th>
+            <th>アルバムタイトル</th>
+            <th>得点</th>
+            <th>レビュー</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="album:${album}" th:object="${album}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{artist}"></td>
+            <td th:text="*{title}"></td>
+            <td th:text="*{score}"></td>
+            <td th:text="*{body}"></td>
+
+            <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}(id=*{id})}">参照</a></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+              <form th:action="@{/album/{id}(id=*{id})}" th:method="delete">
+                <input class="btn btn-default btn-xs" type="submit" value="削除" />
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        <a href="/album/new" class="to-user-registration">投稿する</a>
+      </div>
+</body>
+</html>

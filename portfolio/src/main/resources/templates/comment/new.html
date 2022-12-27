@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Person</title>
+  <style>
+    .red{
+      color: red;
+    }
+    .invalid{
+      border:2px solid red;
+    }
+  </style>
+</head>
+<body>
+  <h2>新規作成</h2>
+  <form th:action="@{/comment/create}" th:object="${commentRequest}" th:method="post">
+    <label>コメント</label>
+    <textarea th:field="*{comment}" th:errorclass="invalid"></textarea><br>
+    <div class="red" th:errors="*{comment}"></div>
+    <button>作成</button>
+  </form>
+  <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}}">参照へ戻る</head></a></td>
+
+  <!-- <form th:action="@{/comment/create}" th:object="${comment}" method="post" novalidate>
+    <input type="hidden" name="id" th:value="${albumId}" />
+    <div class="form-group">
+      <label for="note"><span class="label">コメント</span></label>
+      <textarea th:field="*{comment}" th:errorclass="invalid"></textarea><br>
+      <div class="red" th:errors="*{comment}"></div>
+    </div>
+
+    <div class="form-check"></div>
+    <div class="row"></div>
+    <div class="center">
+      <button class="waves-effect waves-light btn">投稿する</button>
+    </div>
+  </form> -->
+</body>
+</html>
