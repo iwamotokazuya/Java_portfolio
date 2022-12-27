@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS portfolio.album (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  artist VARCHAR(50) NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  score BIGINT(100) NOT NULL,
+  body VARCHAR(300) NOT NULL,
+  update_date DATETIME NOT NULL,
+  create_date DATETIME NOT NULL,
+  delete_date DATETIME NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS portfolio.users (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(30) NOT NULL,
+  password VARCHAR(60) NOT NULL,
+  rolename VARCHAR(10),
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS portfolio.comment (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  comment VARCHAR(300) NOT NULL,
+  album_id BIGINT,
+  FOREIGN KEY (album_id) REFERENCES album(id),
+  update_date DATETIME NOT NULL,
+  create_date DATETIME NOT NULL,
+  delete_date DATETIME NULL,
+  PRIMARY KEY(id)
+);
