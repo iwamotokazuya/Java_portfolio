@@ -2,11 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>ユーザー情報一覧</title>
-<link href="/css/list.css" rel="stylesheet"></link>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <meta charset="utf-8" />
 </head>
 <body>
+  <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]さん!</h3>
+    <form th:action="@{/afterLogout}" method="post">
+      <input type="submit" value="サインアウト"/>
+    </form>
     <h1>レビュー一覧</h1>
+    <a class="fa-solid fa-hand-point-up" href="/album/new">投稿する</a>
     <table>
         <thead>
             <tr>
@@ -18,12 +25,13 @@
             <tr th:each="album : ${album}" th:object="${album}">
                 <td th:text="*{artist}"></td>
                 <td th:text="*{title}"></td>
-                <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}(id=*{id})}">参照</a></td>
-                <td><a class="btn btn-default btn-xs" th:href="@{/album/edit/{id}(id=*{id})}">編集</a></td>
-                <td><a th:href="@{/album/delete/{id}(id=*{id})}" class="btn btn-secondary">削除</a></td>
+                <td>
+                  <a class="fa-sharp fa-solid fa-folder-open fa-2x" th:href="@{/album/{id}(id=*{id})}">参照</a>
+                  <a class="fa-sharp fa-solid fa-pen fa-2x" th:href="@{/album/edit/{id}(id=*{id})}">編集</a>
+                  <a class="fa-sharp fa-solid fa-xmark fa-2x" th:href="@{/album/delete/{id}(id=*{id})}">削除</a>
+                </td>
             </tr>
         </tbody>
     </table>
-    <a href="/album/new" class="to-user-registration">投稿する</a>
 </body>
 </html>

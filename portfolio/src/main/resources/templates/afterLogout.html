@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/afterLogout.css}">
-  <title>ログアウト成功</title>
-  </head>
-  <body>
-    <h1>Hello</h1>
-    <a th:href="@{/login}">ログイン</a>画面へ
-  </body>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ユーザー情報一覧</title>
+<meta charset="utf-8" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+  <a href="/user/registration" class="fa-solid fa-user-plus">ユーザー登録へ</a>
+  <a class="fa-solid fa-circle-check" href="/login">ログイン</a>
+  <h1>レビュー一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>アーティスト名</th>
+                <th>アルバムタイトル</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="album : ${album}" th:object="${album}">
+                <td th:text="*{artist}"></td>
+                <td th:text="*{title}"></td>
+                <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}(id=*{id})}">参照</a></td>
+                <td><a class="btn btn-default btn-xs" th:href="@{/album/edit/{id}(id=*{id})}">編集</a></td>
+                <td><a th:href="@{/album/delete/{id}(id=*{id})}" class="btn btn-secondary">削除</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
 </html>

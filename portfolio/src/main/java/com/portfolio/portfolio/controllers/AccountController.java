@@ -18,11 +18,6 @@ public class AccountController {
   @Autowired
   private UserRegistrationService userRegistrationService;
 
-  @GetMapping("/")
-  public String showTop() {
-    return "index";
-  }
-
   @GetMapping("/login")
   public String showLoginPage() {
     return "login";

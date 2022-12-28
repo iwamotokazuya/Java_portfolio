@@ -29,7 +29,7 @@ public class AlbumController {
   @Autowired
   private CommentService commentService;
 
-  @RequestMapping(value = "/album/index", method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String displayList(Model model) {
     List<Album> album = albumService.searchAll();
     model.addAttribute("album", album);
@@ -67,7 +67,7 @@ public class AlbumController {
   @GetMapping("/album/delete/{id}")
   public String delete(@PathVariable Long id, Model model) {
     albumService.delete(id);
-    return "redirect:/album/index";
+    return "redirect:/";
   }
 
   @RequestMapping(value = "/album/create", method = RequestMethod.POST)
@@ -83,7 +83,7 @@ public class AlbumController {
     }
     // ユーザー情報の登録
     albumService.create(albumRequest);
-    return "redirect:/album/index";
+    return "redirect:/";
   }
 
   @RequestMapping(value = "/album/update", method = RequestMethod.POST)
