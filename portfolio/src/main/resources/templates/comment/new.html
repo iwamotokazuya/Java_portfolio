@@ -2,6 +2,8 @@
 <html xmlns="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <title>Person</title>
   <style>
     .red{
@@ -15,26 +17,15 @@
 <body>
   <h2>新規作成</h2>
   <form th:action="@{/comment/create}" th:object="${commentRequest}" th:method="post">
-    <label>コメント</label>
-    <textarea th:field="*{comment}" th:errorclass="invalid"></textarea><br>
-    <div class="red" th:errors="*{comment}"></div>
-    <button>作成</button>
-  </form>
-  <td><a class="btn btn-default btn-xs" th:href="@{/album/{id}}">参照へ戻る</head></a></td>
-
-  <!-- <form th:action="@{/comment/create}" th:object="${comment}" method="post" novalidate>
-    <input type="hidden" name="id" th:value="${albumId}" />
     <div class="form-group">
-      <label for="note"><span class="label">コメント</span></label>
-      <textarea th:field="*{comment}" th:errorclass="invalid"></textarea><br>
+      <label>コメント</label>
+      <textarea th:field="*{comment}" th:errorclass="invalid" class="form-control"></textarea><br>
       <div class="red" th:errors="*{comment}"></div>
     </div>
-
-    <div class="form-check"></div>
-    <div class="row"></div>
-    <div class="center">
-      <button class="waves-effect waves-light btn">投稿する</button>
+    <div class="text-center">
+      <input type="submit" class="btn btn-primary" value="作成">
+      <a class="btn btn-secondary" href="/">一覧画面へ</a>
     </div>
-  </form> -->
+  </form>
 </body>
 </html>
